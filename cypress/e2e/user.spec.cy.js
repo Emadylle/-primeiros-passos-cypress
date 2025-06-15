@@ -11,12 +11,15 @@ describe('Orange HRM Tests', () => {
     wrongCredentialAlert: "[role='alert']",
     myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]',
     firstNameField: "[name='firstName']",
-    middleNameField: "[name='middleName']",
     lastNameField: "[name='lastName']",
     genericField: ".oxd-input--active",
     dateField: "[placeholder='yyyy-dd-mm']",
+    genericCombobox: ".oxd-select-text--arrow",
+    secondItemCombobox: ".oxd-select-dropdown > :nth-child(6)",
+    thirdItemCombox: ":nth-child(3) > span",
     dateCloseButton: ".--close",
-    submitButton: ".oxd-button--secondary"
+    submitButton: ".oxd-button--secondary",
+    
 
 
   }
@@ -31,14 +34,20 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.dashboardGrid)
     cy.get(selectorsList.myInfoButton).click()
     cy.get(selectorsList.firstNameField).clear().type('FirstNameTeste')
-    cy.get(selectorsList.middleNameField).clear().type('MiddleNameTest')
     cy.get(selectorsList.lastNameField).clear().type('LastNameTest')
-    cy.get(selectorsList.genericField).eq(3).clear().type('Employee')
-    cy.get(selectorsList.genericField).eq(4).clear().type('OtherIdTest')
-    cy.get(selectorsList.genericField).eq(5).clear().type('DriversLicenseTest')
-    cy.get(selectorsList.genericField).eq(6).clear().type('2025-06-14')
+    cy.get(selectorsList.genericField).eq(3).clear().type('NickNameTest')
+    cy.get(selectorsList.genericField).eq(4).clear().type('Employee')
+    cy.get(selectorsList.genericField).eq(5).clear().type('OtherIdTest')
+    cy.get(selectorsList.genericField).eq(6).clear().type('DriversLicenseTest')
+    cy.get(selectorsList.genericField).eq(7).clear().type('2025-06-14')
     cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get(selectorsList.genericField).eq(8).clear().type('ssnNumberTest')
+    cy.get(selectorsList.genericField).eq(9).clear().type('sinNumberTest')
+    cy.get(selectorsList.genericCombobox).eq(0).click({ force : true })
+    cy.get(selectorsList.secondItemCombobox).click()
+    cy.get(selectorsList.genericCombobox).eq(1).click({ force : true })
+    cy.get(selectorsList.thirdItemCombox).click()
+    cy.get(selectorsList.submitButton).eq(0).click({ force : true })
     cy.get('body').should('contain', 'Successfully Updated')
     cy.get('.oxd-toast-close')
     
