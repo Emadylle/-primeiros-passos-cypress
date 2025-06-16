@@ -4,9 +4,6 @@ import LoginPage from '../pages/loginPage'
 import MenuPage from '../pages/menuPage'
 import MyInfoPage from '../pages/myInfoPage'
 
-const Chance = require('chance')
-
-const chance = new Chance()
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const menuPage = new MenuPage()
@@ -23,10 +20,23 @@ describe('Orange HRM Tests', () => {
 
     menuPage.accessMyInfo()
 
-    myInfoPage.fillPersonalDetails(chance.first(), chance.last())
+    myInfoPage.fillPersonalDetails('First Name', 'Last Name')
     myInfoPage.fillEmployeeDetails('Employee', 'other ID', 'Drivers Number', '2025-06-15', '564131')
     myInfoPage.fillStatus()
     myInfoPage.saveForm() 
   })
 
+
+
+  it('Login - Fail', () => {
+    loginPage.accessLoginPage()
+    loginPage.loginWithAnyUser(userData.userFail.username, userData.userFail.password)
+    loginPage.checkAcessInvalid()
+    
+
+
+
+    //cy.get(selectorsList.wrongCredentialAlert)
+    
+  })
 })
